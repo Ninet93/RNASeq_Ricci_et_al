@@ -4,7 +4,7 @@ import numpy as np
 from collections import OrderedDict
 
 
-def Parse_GFF(GFF, path_GFF, path_VR):
+def Parse_GFF(GFF, path_GFF):
 	os.chdir(path_GFF)
 
 	out_f = GFF.replace('.gtf', '_biotypes.txt')
@@ -43,12 +43,9 @@ def Parse_GFF(GFF, path_GFF, path_VR):
 				BioType=''
 
 
-
-	os.chdir(path_VR)
 	out_df.to_csv(out_f, columns=out_df.columns, sep='\t', index=False)
 
 
 GFF = sys.argv[1]
 path_GFF = sys.argv[2]
-path_VR = sys.argv[3]
-Parse_GFF(GFF, path_GFF, path_VR)
+Parse_GFF(GFF, path_GFF)
