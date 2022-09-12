@@ -4,4 +4,4 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 ## Scripts
 
 * [`XX.sh`](Scripts/XX.sh): blabla...
-  * package, programs
+  * package, programs, test
