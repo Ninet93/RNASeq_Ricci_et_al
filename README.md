@@ -3,5 +3,21 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 
 ## Scripts
 
-* [`XX.sh`](Scripts/XX.sh): blabla...
-  * package, programs, test
+* [`Parse_GTF_biotypes.sh`](Scripts/Parse_GTF_biotypes.sh): blabla...
+  * Python and Parse_GTF_biotypes.py
+
+
+
+
+
+
+
+
+
+## Data
+
+### Inputs
+
+* [`GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_geneID.gtf_FeatureCount_annotation_exons.txt`](Data/GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_geneID.gtf_FeatureCount_annotation_exons.txt): Nile tilapia genome annotation summary tables (RefSeq accession GCF_001858045.2) generated using FeatureCount (FeatureCount results are not used in this study)
+
+* [`GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt`](Data/GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt): Nile tilapia genes information tables (RefSeq accession GCF_001858045.2)
