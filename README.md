@@ -12,18 +12,25 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 * [`01stats_Trimmomatic.sh`](Scripts/01stats_Trimmomatic.sh): Trimmomatic summary statistics
 
 * [`02_FastQC_MultiQC.sh`](Scripts/02_FastQC_MultiQC.sh): FastQC and MultiQC
+  * FastQC and MultiQC
 
 * [`03_STAR_genome_index.sh`](Scripts/03_STAR_genome_index.sh): STAR genome indexing
+  * STAR
 
 * [`04_STAR_mapping.sh`](Scripts/04_STAR_mapping.sh): STAR mapping for RNA-seq data
+  * STAR and SAMtools
 
 * [`04_STAR_mapping_RH2As.sh`](Scripts/04_STAR_mapping_RH2As.sh): STAR mapping of unmapped reads to retrieve read pairs that map to both RH2Aa and RH2Ab
+  * STAR and SAMtools
 
 * [`05_MappedReadPairsToRH2As.sh`](Scripts/05_MappedReadPairsToRH2As.sh): Get only read pairs that map to both RH2Aa and RH2Ab
+  * SAMtools
 
 * [`06_HTSeqCount.sh`](Scripts/06_HTSeqCount.sh): HTSeq-count (count reads in genomic features)
+  * HTSeq and SAMtools
 
 * [`06_HTSeqCount_RH2As.sh`](Scripts/06_HTSeqCount_RH2As.sh): HTSeq-count of read pairs that map to both RH2Aa and RH2Ab
+  * HTSeq and SAMtools
  
 
 
