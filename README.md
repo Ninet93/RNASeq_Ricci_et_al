@@ -3,7 +3,7 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 
 ## Scripts
 
-* [`Parse_GTF_biotypes.sh`](Scripts/Parse_GTF_biotypes.sh): blabla...
+* [`00_Parse_GTF_biotypes.sh`](Scripts/00_Parse_GTF_biotypes.sh): Nile tilapia genes information 
   * Python and Parse_GTF_biotypes.py
 
 
