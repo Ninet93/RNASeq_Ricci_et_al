@@ -36,6 +36,8 @@ module load SAMtools/1.10-foss-2018b
 
 samtools index -b ${Prefix}_Aligned.sortedByCoord.out.bam
 
+samtools view -b -f 2 ${Prefix}_Aligned.sortedByCoord.out.bam > ${Prefix}_Aligned_PE.sortedByCoord.out.bam
+
 ##########################################################################################
 DATE=`date '+%d-%m-%Y %H:%M:%S'`
 echo 'End of the job' $DATE
