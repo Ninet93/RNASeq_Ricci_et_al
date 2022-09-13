@@ -16,7 +16,7 @@ module load Trimmomatic/0.39-Java-1.8
 
 # Don't forget to edit the files directory
 
-Prefix=$(sed -n ${SLURM_ARRAY_TASK_ID}p Data/Dataset.txt | cut -f1)
+Prefix=$(sed -n ${SLURM_ARRAY_TASK_ID}p Data/Dataset.txt | cut -f1) # To run as an array
 
 # FileName R1
 RNA_f1=$(grep "$Prefix.*_R1_" ${path_data}List_RNAseq_files_fullpath.txt)
