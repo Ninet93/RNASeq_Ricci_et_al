@@ -33,10 +33,13 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
   * HTSeq and SAMtools
  
 * [`07_HTSeqCount_results.R`](Scripts/HTSeqCount_results.R): Remove lowly expressed genes, select protein-coding RNAs and lncRNAs, convert read count to TPM, create DESEq2 objects
+  * R, DESeq2
 
 * [`08_HTSeqCount_results_WeightedSpeciesMean_opsins.R`](Scripts/08_HTSeqCount_results_WeightedSpeciesMean_opsins.R): Calculate weighted species mean TPM values
+  * R
 
 * [`09_DESeq2_results.R`](Scripts/09_DESeq2_results.R): Principal Component Analysis (PCA)
+  * R, DESeq2
 
 
 
