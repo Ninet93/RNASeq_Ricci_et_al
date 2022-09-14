@@ -26,10 +26,10 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 * [`05_MappedReadPairsToRH2As.sh`](Scripts/05_MappedReadPairsToRH2As.sh): Get only read pairs that map to both RH2Aa and RH2Ab
   * SAMtools
 
-* [`06_HTSeqCount.sh`](Scripts/06_HTSeqCount.sh): HTSeq-count (count reads in genomic features)
+* [`06_1_HTSeqCount.sh`](Scripts/06_HTSeqCount.sh): HTSeq-count (count reads in genomic features)
   * HTSeq and SAMtools
 
-* [`06_HTSeqCount_RH2As.sh`](Scripts/06_HTSeqCount_RH2As.sh): HTSeq-count of read pairs that map to both RH2Aa and RH2Ab
+* [`06_2_HTSeqCount_RH2As.sh`](Scripts/06_HTSeqCount_RH2As.sh): HTSeq-count of read pairs that map to both RH2Aa and RH2Ab
   * HTSeq and SAMtools
  
 * [`07_HTSeqCount_results.R`](Scripts/HTSeqCount_results.R): Remove lowly expressed genes, select protein-coding RNAs and lncRNAs, convert read count to TPM, create DESEq2 objects
