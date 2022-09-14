@@ -234,7 +234,7 @@ print('Opening Count files done...')
 
 
 ##########################################################################################
-# Select expressed protein-coding RNAs and lncRNAs and remove lowly expressed genes
+# Select expressed protein-coding RNAs and lncRNAs and remove lowly expressed genes + DESeq2 objects
 ##########################################################################################
 
 ALL_ID_init = ALL_ID_init[which(colnames(ALL_ID_init) %in% Onil_annot_BT_proteincoding_lncRNA$GeneID)]
@@ -249,6 +249,16 @@ dds <- DESeqDataSetFromMatrix(countData = t(ALL_ID_init),
                               design= ~ Species_ID + Sex)
 
 ALL_ID_init = t(assay(dds[rowSums(counts(dds)>5) >= 3,]))
+
+ddsMethod_Prot_lnc_filter = ALL_ID_init
+
+ddsMethod_Prot_lnc_filter_norm = vst(ddsMethod_Prot_lnc_filter, blind=FALSE)
+ddsMethod_Prot_lnc_filter_norm_assay = assay(ddsMethod_Prot_lnc_filter_norm)
+ddsMethod_Prot_lnc_filter_norm_assay_dist = as.matrix(dist(t(ddsMethod_Prot_lnc_filter_norm_assay)))
+
+dds_Wald_Prot_lnc = DESeq(ddsMethod_Prot_lnc_filter, test="Wald")
+
+save(ddsMethod_Prot_lnc_filter_norm, ddsMethod_Prot_lnc_filter_norm_assay, ddsMethod_Prot_lnc_filter_norm_assay_dist, dds_Wald_Prot_lnc, file=paste0(PATH, Method, '_DESeq_output_exons_ProteinCoding_lncRNA_withRH2As.RData'))
 
 
 ##########################################################################################
@@ -397,22 +407,6 @@ for (ID in unique(Method_count$Species_ID_ID)){
 }
 
 COUNT_ALL_ID_info_Cones_SingleDouble[is.na(COUNT_ALL_ID_info_Cones_SingleDouble$Percent),]$Percent = 0
-
-
-##########################################################################################
-# DESeq2 object
-##########################################################################################
-if (DESeq_TF == TRUE){
-  
-  ddsMethod_df_tmp = left_join(get(paste0(Method, '_Method_count', '_exons')), Infos_LabKey_final)
-  ddsMethod_df = unique(ddsMethod_df_tmp[c('Species_ID_ID', 'FileName', 'Species_ID', 'Sex', 'Tribe', 'Food', 'Habitat', 'Depth')])
-  ddsMethod_df$FolderFileName = paste0(ddsMethod_df$Species_ID_ID, '_trimmed_singlemapping_exons/', ddsMethod_df$FileName)
-  ddsMethod_df = ddsMethod_df[c('Species_ID_ID', 'FolderFileName', 'Species_ID', 'Sex', 'Tribe', 'Food', 'Habitat', 'Depth')]
-  
-  ddsMethod = DESeqDataSetFromMatrix(countData = t(HTSeqCount_ALL_ID_init_exons), colData=ddsMethod_df, design= ~ Species_ID + Sex)
-  
-  save(ddsMethod_df, ddsMethod, file=paste0(PATH, Method, '_DESeq_files_exons_withRH2As.RData'))
-}
 
 
 ##########################################################################################
