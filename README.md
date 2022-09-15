@@ -9,8 +9,6 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 * [`01_Trimmomatic.sh`](Scripts/01_Trimmomatic.sh): Trimmomatic
   * Trimmomatic
 
-* [`01stats_Trimmomatic.sh`](Scripts/01stats_Trimmomatic.sh): Trimmomatic summary statistics
-
 * [`02_FastQC_MultiQC.sh`](Scripts/02_FastQC_MultiQC.sh): FastQC and MultiQC
   * FastQC and MultiQC
 
