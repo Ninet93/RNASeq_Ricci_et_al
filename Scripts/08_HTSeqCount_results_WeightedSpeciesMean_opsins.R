@@ -65,7 +65,7 @@ COUNT_ALL_ID_info_Rod_Cones_Single_Double = COUNT_ALL_ID_info_Rod_Cones_Single_D
 COUNT_ALL_ID = COUNT_ALL_ID_info_Rod_Cones_Single_Double
 COUNT_ALL_ID = left_join(COUNT_ALL_ID, ReadCountTotal)
 
-Opsins_final = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Aa', 'RH2Ab', 'LWS', 'RH1')), Opsins)
+Opsins_final = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Ab', 'RH2Aa', 'LWS', 'RH1')), Opsins)
 Opsins_order = Opsins_final$Opsin
 Opsins_cols_order = Opsins_final$Colors
 

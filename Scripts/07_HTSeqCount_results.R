@@ -366,7 +366,7 @@ COUNT_ALL_ID_info$Sex_Species_ID_ID = paste0(COUNT_ALL_ID_info$Sex, '_', COUNT_A
 COUNT_ALL_ID_info_Cones = COUNT_ALL_ID_info[COUNT_ALL_ID_info$Type == 'Cones', ]
 
 Opsins_tmp = unique(subset(COUNT_ALL_ID_info_Cones, select=c(Opsin,Colors)))
-Opsins_final = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Aa', 'RH2Ab', 'LWS')), Opsins_tmp)
+Opsins_final = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Ab', 'RH2Aa', 'LWS')), Opsins_tmp)
 Opsins_order = Opsins_final$Opsin
 Opsins_cols_order = Opsins_final$Colors
 
@@ -385,7 +385,7 @@ for (ID in Method_count$Species_ID_ID){
 }
 
 Opsins_tmp_RodCones = unique(subset(COUNT_ALL_ID_info_RodCones, select=c(Opsin,Colors)))
-Opsins_final_RodCones = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Aa', 'RH2Ab', 'LWS', 'RH1')), Opsins_tmp_RodCones)
+Opsins_final_RodCones = left_join(data.frame(Opsin=c('SWS1', 'SWS2B', 'SWS2A', 'RH2B', 'RH2Ab', 'RH2Aa', 'LWS', 'RH1')), Opsins_tmp_RodCones)
 Opsins_order_RodCones = Opsins_final_RodCones$Opsin
 Opsins_cols_order_RodCones = Opsins_final_RodCones$Colors
 
