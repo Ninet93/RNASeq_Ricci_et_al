@@ -51,7 +51,7 @@ rownames(ReadCountTotal) = NULL
 
 
 ##########################################################################################
-# Dataframes from RData
+# Dataframes from RData - Weighted species mean calculation
 ##########################################################################################
 
 COUNT_ALL_ID_info_RodCones = get(paste0(Method, '_COUNT_ALL_ID_info_RodCones', '_', VALUE, '_exons'))

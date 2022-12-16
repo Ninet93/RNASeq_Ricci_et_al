@@ -138,7 +138,7 @@ for (var in c('intermediate', 'shallow', 'deep')){
 
 
 # Sampling information
-Infos_LabKey = read.csv(paste0(PATH, 'TissueTube_2022-03-22_13-45-19.csv'), header=TRUE)
+Infos_LabKey = read.csv(paste0(PATH, SAMPLING_INFO), header=TRUE)
 names(Infos_LabKey) = c('Species_ID', 'Species', 'ID', 'TissueTubeID', 'Sex', 'Tribe', 'Origin', 'Location', 'Date', 'TissueID', 'Notes', 'Morph')
 Infos_LabKey$Species_ID = tolower(Infos_LabKey$Species_ID)
 substring(Infos_LabKey$Species_ID, 1, 1) = toupper(substring(Infos_LabKey$Species_ID, 1, 1))
@@ -146,10 +146,6 @@ Infos_LabKey$Species_ID_ID = paste0(Infos_LabKey$Species_ID, '_', str_replace(In
 sub_Infos_LabKey = subset(Infos_LabKey, select=c(Species_ID, Species_ID_ID, Sex, Origin, Location, Date))
 
 Infos_LabKey_final_tmp = left_join(Infos_cols, sub_Infos_LabKey)
-
-
-# Summary statistics from Trimmomatic, FastQC, MultiQC, and STAR
-Df_plot_final = read.csv(paste0(PATH, 'RNA_seq_QC_MultiQC_STAR.txt'), sep='\t', header=TRUE)
 
 
 # Table with sample IDs and HTSeq-count output file names
@@ -230,7 +226,7 @@ ALL_ID_init = ALL_ID # BackUp
 rownames(ALL_ID_init) = ALL_ID_init$Species_ID_ID
 ALL_ID_init$Species_ID_ID = NULL
 
-print('Opening Count files done...')
+print('HTSeq-count output concatenation done...')
 
 
 ##########################################################################################
