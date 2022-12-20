@@ -77,18 +77,18 @@ for (r in seq(1, nrow(TPM_WSM_opsin))){
 }
 head(visual_palettes)
 
+df_simmap = paste0(visual_palettes$Top1, '_', visual_palettes$Top2, '_', visual_palettes$Top3)
 names(df_simmap) = visual_palettes$Species	
-levels(df_simmap) = paste0(visual_palettes$Top1, '_', visual_palettes$Top2, '_', visual_palettes$Top3)
 
-simmap_df[simmap_df == 'SWS1_LWS_RH2As'] = 'SWS1_RH2As_LWS'
-simmap_df[simmap_df == 'SWS1_LWS_RH2B'] = 'SWS1_RH2B_LWS'
-simmap_df[simmap_df == 'SWS1_RH2As_RH2B'] = 'SWS1_RH2B_RH2As'
-simmap_df[simmap_df == 'SWS2A_LWS_RH2As'] = 'SWS2A_RH2As_LWS'
-simmap_df[simmap_df == 'SWS2A_RH2As_RH2B'] = 'SWS2A_RH2B_RH2As'
-simmap_df[simmap_df == 'SWS2B_LWS_RH2As'] = 'SWS2B_RH2As_LWS'
-simmap_df[simmap_df == 'SWS2B_LWS_RH2B'] = 'SWS2B_RH2B_LWS'
-simmap_df[simmap_df == 'SWS2B_RH2As_RH2B'] = 'SWS2B_RH2B_RH2As'
-levels(simmap_df) = c('SWS1_RH2As_LWS','SWS1_RH2B_LWS','SWS1_RH2B_RH2As',
+df_simmap[df_simmap == 'SWS1_LWS_RH2As'] = 'SWS1_RH2As_LWS'
+df_simmap[df_simmap == 'SWS1_LWS_RH2B'] = 'SWS1_RH2B_LWS'
+df_simmap[df_simmap == 'SWS1_RH2As_RH2B'] = 'SWS1_RH2B_RH2As'
+df_simmap[df_simmap == 'SWS2A_LWS_RH2As'] = 'SWS2A_RH2As_LWS'
+df_simmap[df_simmap == 'SWS2A_RH2As_RH2B'] = 'SWS2A_RH2B_RH2As'
+df_simmap[df_simmap == 'SWS2B_LWS_RH2As'] = 'SWS2B_RH2As_LWS'
+df_simmap[df_simmap == 'SWS2B_LWS_RH2B'] = 'SWS2B_RH2B_LWS'
+df_simmap[df_simmap == 'SWS2B_RH2As_RH2B'] = 'SWS2B_RH2B_RH2As'
+levels(df_simmap) = c('SWS1_RH2As_LWS','SWS1_RH2B_LWS','SWS1_RH2B_RH2As',
   'SWS2A_RH2As_LWS','SWS2A_RH2B_RH2As',
   'SWS2B_RH2As_LWS', 'SWS2B_RH2B_LWS','SWS2B_RH2B_RH2As')
 
@@ -123,7 +123,7 @@ levels(df_simmap_hclust) = c('SWS1_RH2B_RH2As', 'SWS2A_RH2As_LWS', 'SWS2B_RH2B_R
 parameters=c(p_type, p_model, p_method, p_nsim)
 names(parameters) = c('type', 'model', 'method', 'nsim')
 
-mtree = make.simmap(phy, simmap_df, type = parameters[['type']], model = parameters[['model']], method = parameters[['method']], nsim = as.numeric(parameters[['nsim']]), Q='mcmc')
+mtree = make.simmap(phy, df_simmap, type = parameters[['type']], model = parameters[['model']], method = parameters[['method']], nsim = as.numeric(parameters[['nsim']]), Q='mcmc')
 
 mtree_hclust = make.simmap(phy, df_simmap_hclust, type = parameters[['type']], model = parameters[['model']], method = parameters[['method']], nsim = as.numeric(parameters[['nsim']]), Q='mcmc')
 
