@@ -16,9 +16,9 @@ suppressMessages(library(phytools))
 SINGLECONES = c('SWS1', 'SWS2B', 'SWS2A')
 DOUBLECONES = c('RH2B', 'RH2Aa', 'RH2Ab', 'LWS')
 
-phy # Species tree from Ronco et al. 2021
+phy # Species tree from Ronco et al. 2021 pruned to taxa included in this study (without Astbur, Oretan, and Tylpol)
 
-TPM_WSM # weighted species mean TPM values per species
+TPM_WSM # weighted species mean TPM values per species (without Astbur, Oretan, and Tylpol)
 # species as row and genes as column
 
 TPM_WSM_opsin = TPM_WSM[Opsins[2:8,]$GeneName]  # Opsins table from Orenil_opsins.txt
