@@ -39,6 +39,12 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 * [`09_DESeq2_results.R`](Scripts/09_DESeq2_results.R): Principal Component Analysis (PCA)
   * R, DESeq2
 
+* [`010_VisualPalettes.R`](Scripts/010_VisualPalettes.R): Visual palettes and ancestral states reconstructions
+  * R
+
+* [`011_Correlations.R`](Scripts/011_Correlations.R): Linear regression (lm) and phylogenetic generalized least squares (pGLS) analyses
+  * R
+
 
 
 
