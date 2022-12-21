@@ -16,12 +16,18 @@ suppressMessages(library(phytools))
 SINGLECONES = c('SWS1', 'SWS2B', 'SWS2A')
 DOUBLECONES = c('RH2B', 'RH2Aa', 'RH2Ab', 'LWS')
 
-phy # Species tree from Ronco et al. 2021 pruned to taxa included in this study (without Astbur, Oretan, and Tylpol)
+phy = read.nexus('Data/RNAseq_SpeciesTree.tre')
+# Species tree from Ronco et al. 2021 pruned to taxa included in this study (without Astbur, Oretan, and Tylpol)
 
-TPM_WSM # weighted species mean TPM values per species (without Astbur, Oretan, and Tylpol)
+TPM_WSM # output of the script 08_HTSeqCount_results_WeightedSpeciesMean_opsins.R
+# == COUNT_ALL_ID_WM_Individually
+# weighted species mean TPM values per species (without Astbur, Oretan, and Tylpol)
 # species as row and genes as column
 
-TPM_WSM_opsin = TPM_WSM[Opsins[2:8,]$GeneName]  # Opsins table from Orenil_opsins.txt
+Opsins = read.csv('Data/Orenil_opsins', sep='\t', header=F)
+names(Opsins) = c('Opsin', 'GeneName', 'Color')
+
+TPM_WSM_opsin = TPM_WSM[Opsins[2:8,]$GeneName] # cone opsins only
 
 ##########################################################################################
 # clustering by gene expression levels
@@ -98,6 +104,8 @@ levels(df_simmap) = c('SWS1_RH2As_LWS','SWS1_RH2B_LWS','SWS1_RH2B_RH2As',
 ##########################################################################################
 
 TPM_WSM_DoubleSingleCones = TPM_WSM_opsin
+# output of the script 08_HTSeqCount_results_WeightedSpeciesMean_opsins.R
+# == COUNT_ALL_ID_WM_Single_Double_Cones
 
 TPM_WSM_DoubleSingleCones[SINGLECONES] = TPM_WSM_DoubleSingleCones[SINGLECONES] / rowSums(TPM_WSM_DoubleSingleCones[SINGLECONES])
 TPM_WSM_DoubleSingleCones[DOUBLCONES] = TPM_WSM_DoubleSingleCones[DOUBLCONES] / rowSums(TPM_WSM_DoubleSingleCones[DOUBLCONES])
@@ -117,8 +125,13 @@ levels(df_simmap_hclust) = c('SWS1_RH2B_RH2As', 'SWS2A_RH2As_LWS', 'SWS2B_RH2B_R
 
 
 ##########################################################################################
-# ancestral state reconstruction with make.simmap
+# ancestral state reconstruction with make.simmap function
 ##########################################################################################
+
+p_type='discrete'
+p_model='ER'
+p_method='ML'
+p_nsim='10000'
 
 parameters=c(p_type, p_model, p_method, p_nsim)
 names(parameters) = c('type', 'model', 'method', 'nsim')
