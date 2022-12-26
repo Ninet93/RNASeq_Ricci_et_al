@@ -61,3 +61,16 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 * [`GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_geneID.gtf_FeatureCount_annotation_exons.txt`](Data/GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_geneID.gtf_FeatureCount_annotation_exons.txt): Nile tilapia genome annotation summary tables generated using FeatureCount (FeatureCount is not used in this study)
 
 * [`GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt`](Data/GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt): Nile tilapia genes information tables
+
+* [`HTSeqCount_exons_Individual.txt`](Data/HTSeqCount_exons_Individual.txt): Raw HTSeq-count table
+
+### Extra Figures
+
+* [`HTSeqCount_exons_PCA_Individual_proteins_lncRNAs.pdf`](Data/Extra_figures/HTSeqCount_exons_PCA_Individual_proteins_lncRNAs.pdf): Individual PCA of protein-coding RNAs and lncRNAs
+
+* [`HTSeqCount_exons_PCA_Individual_opsins.pdf`](Data/Extra_figures/HTSeqCount_exons_PCA_Individual_opsins.pdf): Individual PCA of opsins
+
+* [`HTSeqCount_RodCones_PE_Count_exons_PerTribe.pdf`](Data/Extra_figures/HTSeqCount_RodCones_PE_Count_exons_PerTribe.pdf): Individual barplots of opsins (HTSeq-count)
+
+* [`HTSeqCount_RodCones_PE_TPM_exons_PerTribe.pdf`](Data/Extra_figures/HTSeqCount_RodCones_PE_TPM_exons_PerTribe.pdf): Individual barplots of opsins (HTSeq-count converted in TPM values)
+
