@@ -52,7 +52,7 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2022)
 
 ### Inputs
 
-* [`Orenil_opsins.txt`](Data/Orenil_opsins.txt): _Nile tilapia_ opsin information
+* [`Orenil_opsins.txt`](Data/Orenil_opsins.txt): _Nile tilapia_ opsins information
 
 * [`RNAseq_SpeciesTree.tre`](Data/RNAseq_SpeciesTree.tre): Species tree (see Ronco et al. 2021) pruned to the taxa used in this study
 
