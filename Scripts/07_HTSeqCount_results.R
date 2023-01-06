@@ -178,10 +178,20 @@ for (ID in unique(Method_count$Species_ID_ID)){
   count_ID_RH2As$Species_ID_ID = ID
   count_ID_RH2As$Species_ID = data.frame(do.call(rbind, strsplit(count_ID_RH2As$Species_ID_ID, '_', 1)))[,1]
   
-  # half of unmapped reads count to RH2Aa and half th RH2Ab
-  Sums_RH2Aa_RH2Ab = sum(count_ID_RH2As$Count)/2
-  count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710942', ]$Count = floor(Sums_RH2Aa_RH2Ab) # RH2Aa # round to smaller integer (if .5)
-  count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710676', ]$Count = ceiling(Sums_RH2Aa_RH2Ab) # RH2Ab # round to bigger integer (if .5)
+  # keeping the proportion of RH2Aa and RH2Ab when adding unmapped read counts
+  tot_RH2As = count_ID[count_ID$GeneName == 'LOC100710942',]$Count + count_ID[count_ID$GeneName == 'LOC100710676',]$Count
+    
+  prop_RH2Aa = count_ID[count_ID$GeneName == 'LOC100710942',]$Count/tot_RH2As
+  prop_RH2Ab = count_ID[count_ID$GeneName == 'LOC100710676',]$Count/tot_RH2As
+    
+  tot_unmapped_RH2As = count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710942',]$Count + count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710676',]$Count
+    
+  extra_RH2Aa = tot_unmapped_RH2As*prop_RH2Aa
+  extra_RH2Ab = tot_unmapped_RH2As*prop_RH2Ab
+    
+  count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710942', ]$Count = extra_RH2Aa
+  count_ID_RH2As[count_ID_RH2As$GeneName == 'LOC100710676', ]$Count = extra_RH2Ab
+  
   
   ###
   matrixx = as.data.frame(t(count_ID['Count']))
