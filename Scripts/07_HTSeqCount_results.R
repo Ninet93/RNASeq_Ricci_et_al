@@ -157,7 +157,7 @@ head(Method_count)
 ##########################################################################################
 
 start_time = Sys.time()
-ALL_ID = ''
+ALL_ID_init0 = ''
 # Create dataframe with counts for all individuals
 Expression_all_ID = ''
 for (ID in unique(Method_count$Species_ID_ID)){
@@ -219,20 +219,21 @@ for (ID in unique(Method_count$Species_ID_ID)){
   
   Expression_df = data.frame(Species_ID_ID=ID, TotalCount=total_row, ExpressedGenes=ExpressedGenes, ExpressedGenes_Percent=ExpressedGenes_Percent, MinCountInGenes=min_t, Quart1CountInGenes=quart1_t, MedianCountInGenes=median_t, MeanCountInGenes=mean_t, Quart3CountInGenes=quart3_t, MaxCountInGenes=max_t)
   
-  if (is.data.frame(ALL_ID) == FALSE){
-    ALL_ID = matrixx_final
+  if (is.data.frame(ALL_ID_init0) == FALSE){
+    ALL_ID_init0 = matrixx_final
     Expression_all_ID = Expression_df
   }else{
-    ALL_ID = rbind(ALL_ID, matrixx_final)
+    ALL_ID_init0 = rbind(ALL_ID_init0, matrixx_final)
     Expression_all_ID = rbind(Expression_all_ID, Expression_df)
   }
-  print(nrow(ALL_ID))
+  print(nrow(ALL_ID_init0))
   
 }
 stop_time = Sys.time()
 start_time; stop_time
 rm(count_ID, matrixx, matrixx_final)
-ALL_ID_init = ALL_ID # BackUp
+# I round() values of ALL_ID_init0, otherwise dds doesn't work
+ALL_ID_init = round(ALL_ID_init0) # BackUp
 rownames(ALL_ID_init) = ALL_ID_init$Species_ID_ID
 ALL_ID_init$Species_ID_ID = NULL
 
@@ -243,20 +244,21 @@ print('HTSeq-count output concatenation done...')
 # Select expressed protein-coding RNAs and lncRNAs and remove lowly expressed genes + DESeq2 objects
 ##########################################################################################
 
-ALL_ID_init = ALL_ID_init[which(colnames(ALL_ID_init) %in% Onil_annot_BT_proteincoding_lncRNA$GeneID)]
+ALL_ID_filter = ALL_ID_init[which(colnames(ALL_ID_init) %in% Onil_annot_BT_proteincoding_lncRNA$GeneID)]
 
 ddsMethod_df_tmp = left_join(Method_count, Infos_LabKey_final)
 ddsMethod_df = unique(ddsMethod_df_tmp[c('Species_ID_ID', 'FileName', 'Species_ID', 'Sex', 'Tribe', 'Food', 'Habitat', 'Depth')])
 ddsMethod_df$FolderFileName = paste0(ddsMethod_df$Species_ID_ID, '_trimmed_singlemapping_exons/', ddsMethod_df$FileName)
 ddsMethod_df = ddsMethod_df[c('Species_ID_ID', 'FolderFileName', 'Species_ID', 'Sex', 'Tribe', 'Food', 'Habitat', 'Depth')]
 
-dds <- DESeqDataSetFromMatrix(countData = t(ALL_ID_init),
+dds <- DESeqDataSetFromMatrix(countData = t(ALL_ID_filter),
                               colData = ddsMethod_df,
                               design= ~ Species_ID + Sex)
 
-ALL_ID_init = t(assay(dds[rowSums(counts(dds)>5) >= 3,]))
+ALL_ID_filter = t(assay(dds[rowSums(counts(dds)>5) >= 3,]))
 
-ddsMethod_Prot_lnc_filter = ALL_ID_init
+
+ddsMethod_Prot_lnc_filter = ALL_ID_filter
 
 ddsMethod_Prot_lnc_filter_norm = vst(ddsMethod_Prot_lnc_filter, blind=FALSE)
 ddsMethod_Prot_lnc_filter_norm_assay = assay(ddsMethod_Prot_lnc_filter_norm)
@@ -271,8 +273,8 @@ save(ddsMethod_Prot_lnc_filter_norm, ddsMethod_Prot_lnc_filter_norm_assay, ddsMe
 # TPM normalisation
 ##########################################################################################
 
-ALL_ID_init_T = t(ALL_ID_init) # samples (columns) and genes (rows)
-ALL_ID_TPM = data.frame(t(tpm3(ALL_ID_init_T, FeatureCounts_Orenil_Annot[FeatureCounts_Orenil_Annot$GeneID %in% colnames(ALL_ID_init),]$Length)))
+ALL_ID_filter_T = t(ALL_ID_filter) # samples (columns) and genes (rows)
+ALL_ID_TPM = data.frame(t(tpm3(ALL_ID_filter_T, FeatureCounts_Orenil_Annot[FeatureCounts_Orenil_Annot$GeneID %in% colnames(ALL_ID_filter),]$Length)))
 
 print('TPM normalisation done...')
 
@@ -419,16 +421,16 @@ COUNT_ALL_ID_info_Cones_SingleDouble[is.na(COUNT_ALL_ID_info_Cones_SingleDouble$
 # Save variables and RData
 ##########################################################################################
 assign(paste0(Method, '_', 'Method_count', '_exons'), Method_count)
-assign(paste0(Method, '_', 'ALL_ID', '_exons'), ALL_ID)
+assign(paste0(Method, '_', 'ALL_ID_filter', '_exons'), ALL_ID_filter)
 assign(paste0(Method, '_', 'ALL_ID_TPM', '_exons'), ALL_ID_TPM)
 assign(paste0(Method, '_', 'ALL_ID_init', '_exons'), ALL_ID_init)
 assign(paste0(Method, '_', 'ALL_ID_stats', '_exons'), ALL_ID_stats)
 ############################################
 
 # Remove variables
-rm(Method_count, ALL_ID, COUNT_ALL_ID, COUNT_ALL_ID_info, COUNT_ALL_ID_info_Cones, COUNT_ALL_ID_info_RodCones, COUNT_ALL_ID_info_Cones_SingleDouble,
+rm(Method_count, ALL_ID_filter, COUNT_ALL_ID, COUNT_ALL_ID_info, COUNT_ALL_ID_info_Cones, COUNT_ALL_ID_info_RodCones, COUNT_ALL_ID_info_Cones_SingleDouble,
    ALL_ID_init, ALL_ID_stats,
-   ALL_ID_init_T, ALL_ID_TPM, ALL_ID_TPM_ID)
+   ALL_ID_filter_T, ALL_ID_TPM, ALL_ID_TPM_ID)
 
 # Save RData
 save.image(file = paste0(PATH, Method, '_exons_FilteredForTPMandVST_withRH2As.RData'))
