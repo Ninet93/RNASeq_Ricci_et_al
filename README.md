@@ -62,7 +62,7 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2023)
 
 * [`GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt`](Data/GCF_001858045.2_O_niloticus_UMD_NMBU_genomic_biotypes.txt): _Nile tilapia_ genes information tables
 
-* [`HTSeqCount_exons_Individual.txt`](Data/HTSeqCount_exons_Individual.txt): Raw HTSeq-count table
+* [`HTSeqCount_ALL_exons_Individuals_withRH2As.txt`](Data/HTSeqCount_ALL_exons_Individuals_withRH2As.txt): Raw HTSeq-count table with the correction of RH2Aa/RH2Ab proportion (row=individuals, column=genes)
 
 ### Extra Figures
 
