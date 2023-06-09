@@ -2,7 +2,7 @@ suppressMessages(library(phytools))
 suppressMessages(library(geomorph))
 
 ##########################################################################################
-### Virginie Ricci, 2022
+### Virginie Ricci and Fabrizia Ronco, 2022
 ##########################################################################################
 
 # Linear regression (lm) and phylogenetic generalized least squares (pGLS) 

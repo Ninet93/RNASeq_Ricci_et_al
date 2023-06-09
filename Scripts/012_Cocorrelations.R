@@ -2,7 +2,7 @@ suppressMessages(library(phytools))
 suppressMessages(library(caper))
 
 ##########################################################################################
-### Virginie Ricci, 2022
+### Fabrizia Ronco and Virginie Ricci, 2022
 ##########################################################################################
 
 # Co-correlation of visual opsin gene expression (lm and PIC analyses)
