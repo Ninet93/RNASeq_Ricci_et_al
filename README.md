@@ -36,14 +36,18 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2023)
 * [`08_HTSeqCount_results_WeightedSpeciesMean_opsins.R`](Scripts/08_HTSeqCount_results_WeightedSpeciesMean_opsins.R): Calculate weighted species mean TPM values
   * R
 
-* [`09_DESeq2_results.R`](Scripts/09_DESeq2_results.R): Principal Component Analysis (PCA)
+* [`09_DESeq2_results.R`](Scripts/09_DESeq2_results.R): Principal Component Analysis (PCA) and phylospace on PCA
   * R, DESeq2
 
 * [`010_VisualPalettes.R`](Scripts/010_VisualPalettes.R): Visual palettes and ancestral states reconstructions
   * R
 
-* [`011_Correlations.R`](Scripts/011_Correlations.R): Linear regression (lm) and phylogenetic generalized least squares (pGLS) analyses
+* [`011_Correlations.R`](Scripts/011_Correlations.R): Linear regression (lm), phylogenetic generalized least squares (pGLS) and two-block partial least squares regression (PLS) analyses
   * R
+  
+* [`012_Cocorrelations.R`](Scripts/012_Cocorrelations.R): Co-correlation of visual opsin gene expression levels
+  * R
+
 
 
 

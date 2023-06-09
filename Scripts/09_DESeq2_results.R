@@ -93,7 +93,7 @@ for (ops in Opsins$GeneName[c(1:8)]){
 ddsMethod_SpeciesWeightedMean$Species_ID = rownames(ddsMethod_SpeciesWeightedMean)
 
 
-# PCA of weighted species mean values
+# PCA of weighted species mean values # ROD AND CONE OPSIN GENES
 ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals_split = split(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals, ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals$Species_ID)
 
 Nspecies = length(unique(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals$Species_ID))
@@ -110,6 +110,27 @@ rownames(out) = out$Species_ID
 out$Species_ID = NULL
 
 pca_opsins <- prcomp(out)
+
+
+
+# PCA of weighted species mean values # CONE OPSIN GENES
+ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals_split = split(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals, ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals$Species_ID)
+
+Nspecies = length(unique(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals$Species_ID))
+Nopsins = length(Opsins$GeneName[c(2:8)])
+out_coneopsins = as.data.frame(matrix(NA, Nspecies, Nopsins + 1))
+out_coneopsins[,1] = unique(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals$Species_ID)
+names(out_coneopsins)[1] = 'Species_ID'
+for (i in 1:Nopsins){
+  tmp = lapply(ddsMethod_Prot_lnc_filter_norm_assay_OPSINS_t_Totals_split, function(x) weighted.mean(x[,i+1], x$TotalReadCount))
+  out_coneopsins[,i+1] = unlist(tmp)
+  names(out_coneopsins)[i+1] = Opsins$GeneName[i+1]
+}
+rownames(out_coneopsins) = out_coneopsins$Species_ID
+out_coneopsins$Species_ID = NULL
+
+pca_coneopsins <- prcomp(out_coneopsins)
+
 
 
 # Weighted species mean on DESeq2 normalized read count table
@@ -169,6 +190,23 @@ lncRNA = which(colnames(out_all) %in% unique(Onil_annot_BT_lncRNA$GeneID))
 
 ddsMethod_Prot_lnc_filter_norm_assay_lncRNAS = out_all[,lncRNA]
 
+
+
+
+# Phylospace on the PCA with cone opsin genes
+
+phy = read.nexus('Data/RNAseq_SpeciesTree.tre')
+# Species tree from Ronco et al. 2021 pruned to taxa included in this study (without Astbur, Oretan, and Tylpol)
+
+# PC1 and PC2
+X_df = data.frame('PC1' = pca_coneopsins$x[,1], 'PC2' = pca_coneopsins$x[,2]); head(X_df); dim(X_df)
+rownames(X_df) = out_coneopsins$Species_ID; head(X_df); dim(X_df)
+
+points_Tylpol_Oretan_Astbur = X_df[X_df$Species_ID %in% c('Tylpol', 'Oretan', 'Astbur'),]
+
+phylomorphospace(phy, X=X_df, lwd=3, fsize=1.5)
+points(points_Tylpol_Oretan_Astbur$PC1, points_Tylpol_Oretan_Astbur$PC2, bg=cols_Tylpol_Oretan_Astbur$Cols, pch=21, cex=1.3)
+text(points_Tylpol_Oretan_Astbur$PC1, points_Tylpol_Oretan_Astbur$PC2, labels=points_Tylpol_Oretan_Astbur$Species_ID, cex=0.75)
 
 
 
