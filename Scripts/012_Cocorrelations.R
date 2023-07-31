@@ -27,7 +27,7 @@ TPM_WSM # output of the script 08_HTSeqCount_results_WeightedSpeciesMean_opsins.
 
 
 ##########################################################################################
-# Co-correlation of visual opsin gene expression
+# Expression correlation of visual opsin gene expression
 ##########################################################################################
 
 TPM_WSM_opsin = TPM_WSM[Opsins$Opsin,]
@@ -100,4 +100,21 @@ for (i in 1:ncol(TPM_WSM_opsin_Percent)) {
 
 
 
+### P-values multiple testing correction
+# including both RH2Aa, RH2Ab and RH2As
+
+Ps = cor_res$P
+diag(Ps)=NA
+Ps[upper.tri(Ps)]=NA
+Ps = melt(Ps, na.rm=T)
+Ps$corrected = p.adjust(Ps$value, method="BH")
+write.csv(Ps, "P_values_corrected_9genes_Spearman_PICs.csv", row.names=F)
+
+
+Ps_raw=cor_res_raw$P
+diag(Ps_raw)=NA
+Ps_raw[upper.tri(Ps_raw)]=NA
+Ps_raw = melt(Ps_raw, na.rm=T)
+Ps_raw$corrected = p.adjust(Ps_raw$value, method="BH")
+write.csv(Ps_raw, "P_values_corrected_9genes_Spearman_raw.csv", row.names=F)
 
