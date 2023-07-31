@@ -78,3 +78,4 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2023)
 
 * [`HTSeqCount_RodCones_PE_TPM_exons_PerTribe.pdf`](Data/Extra_figures/HTSeqCount_RodCones_PE_TPM_exons_PerTribe.pdf): Individual barplots of opsins (HTSeq-count converted in TPM values)
 
+* [`Opsins_median_readcoverage_CDS_GW_PerTribe.pdf`](Data/Extra_figures/Opsins_median_readcoverage_CDS_GW_PerTribe.pdf): Coverage of mapped read estimates per cone opsin (see Ricci et al. 2022 for RH1)
