@@ -45,7 +45,7 @@ Virginie Ricci, Fabrizia Ronco, Nicolas Boileau & Walter Salzburger (2023)
 * [`011_Correlations.R`](Scripts/011_Correlations.R): Linear regression (lm), phylogenetic generalized least squares (pGLS) and two-block partial least squares regression (PLS) analyses
   * R
   
-* [`012_Cocorrelations.R`](Scripts/012_Cocorrelations.R): Co-correlation of visual opsin gene expression levels
+* [`012_Cocorrelations.R`](Scripts/012_Cocorrelations.R): Expression correlation of visual opsin gene expression levels
   * R
 
 
